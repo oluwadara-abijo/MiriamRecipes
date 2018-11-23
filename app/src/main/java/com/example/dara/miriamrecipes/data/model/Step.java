@@ -3,7 +3,7 @@ package com.example.dara.miriamrecipes.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-class Step implements Parcelable {
+public class Step implements Parcelable {
 
     //Fields
     private int mId;

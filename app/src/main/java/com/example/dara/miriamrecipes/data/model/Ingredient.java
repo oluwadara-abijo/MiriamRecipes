@@ -3,7 +3,7 @@ package com.example.dara.miriamrecipes.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-class Ingredient implements Parcelable {
+public class Ingredient implements Parcelable {
 
     //Fields
     int mQuantity;
@@ -16,6 +16,8 @@ class Ingredient implements Parcelable {
         mMeasure = measure;
         mIngredient = ingredient;
     }
+
+    public Ingredient () {}
 
     protected Ingredient(Parcel in) {
         mQuantity = in.readInt();
