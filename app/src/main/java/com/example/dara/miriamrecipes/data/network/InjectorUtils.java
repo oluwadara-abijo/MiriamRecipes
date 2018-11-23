@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.dara.miriamrecipes.AppExecutors;
 import com.example.dara.miriamrecipes.data.RecipeRepository;
+import com.example.dara.miriamrecipes.ui.list.MainViewModelFactory;
 
 /**
  * Provides static methods to inject the various classes needed for Sunshine
@@ -20,6 +21,11 @@ public class InjectorUtils {
     public static RecipeNetworkDataSource provideNetworkDataSource(Context context) {
         AppExecutors executors = AppExecutors.getInstance();
         return RecipeNetworkDataSource.getInstance(context.getApplicationContext(), executors);
+    }
+
+    public static MainViewModelFactory provideMainActivityViewModelFactory(Context context) {
+        RecipeRepository repository = provideRepository(context.getApplicationContext());
+        return new MainViewModelFactory(repository);
     }
 
 }

@@ -49,6 +49,7 @@ public class RecipeNetworkDataSource {
     //Gets the recipes from network
 
     public LiveData<List<Recipe>> getRecipes() {
+        MutableLiveData<List<Recipe>> mutableLiveData = new MutableLiveData<>();
 
         mExecutors.networkIO().execute(() -> {
             try {
@@ -63,13 +64,13 @@ public class RecipeNetworkDataSource {
                 Log.d(LOG_TAG, "JSON Parsing finished");
 
                 //Parse json response into a list of movies
-                mAllRecipes.postValue(recipes);
+                mutableLiveData.postValue(recipes);
                 Log.d(LOG_TAG, "JSON Parsing finished");
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-        return mAllRecipes;
+        return mutableLiveData;
     }
 }

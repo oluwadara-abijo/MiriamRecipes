@@ -36,7 +36,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         Context context = viewGroup.getContext();
         int layout = R.layout.list_item_recipe;
         View view = LayoutInflater.from(context).inflate(layout, viewGroup, false);
-        ButterKnife.bind(this, view);
+//        ButterKnife.bind(this, view);
         return new RecipeAdapterViewHolder(view);
     }
 
@@ -45,6 +45,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         Recipe currentRecipe = mRecipes.get(i);
         recipeAdapterViewHolder.recipeName.setText(currentRecipe.getName());
 
+    }
+
+    /**
+     * When data changes, this method updates the list of recipes
+     * and notifies the adapter to use the new values on it
+     */
+    public void setRecipes(List<Recipe> recipes) {
+        mRecipes = recipes;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -66,6 +75,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         //ViewHolder class constructor
         RecipeAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         @Override
