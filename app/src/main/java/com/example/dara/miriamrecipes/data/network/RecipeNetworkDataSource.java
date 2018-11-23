@@ -1,5 +1,6 @@
 package com.example.dara.miriamrecipes.data.network;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.util.Log;
 import com.example.dara.miriamrecipes.AppExecutors;
 import com.example.dara.miriamrecipes.data.model.Recipe;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -20,14 +22,14 @@ public class RecipeNetworkDataSource {
 
     private final AppExecutors mExecutors;
 
-    //LiveData storing the latest downloaded recipes
-    private final MutableLiveData<List<Recipe>> mDownloadedRecipes;
+    //LiveData storing the recipes
+    private final MutableLiveData<List<Recipe>> mAllRecipes;
 
     //Constructor
     private RecipeNetworkDataSource(Context context, AppExecutors executors) {
         mContext = context;
         mExecutors = executors;
-        mDownloadedRecipes = new MutableLiveData<>();
+        mAllRecipes = new MutableLiveData<>();
     }
 
     /**
@@ -44,19 +46,12 @@ public class RecipeNetworkDataSource {
         return sInstance;
     }
 
-    //Getter method for downloaded recipes
-    public MutableLiveData<List<Recipe>> getDownloadedRecipes() {
-        return mDownloadedRecipes;
-    }
+    //Gets the recipes from network
 
-    /**
-     * Gets the newest weather
-     */
-    void fetchRecipes() {
-        Log.d(LOG_TAG, "Fetch weather started");
+    public LiveData<List<Recipe>> getRecipes() {
+
         mExecutors.networkIO().execute(() -> {
             try {
-
                 //Get the url to query
                 URL recipeRequestUrl = NetworkUtils.buildQueryUrl();
 
@@ -67,18 +62,14 @@ public class RecipeNetworkDataSource {
                 List<Recipe> recipes = RecipeJsonUtils.extractRecipesFromJson(jsonRecipeResponse);
                 Log.d(LOG_TAG, "JSON Parsing finished");
 
-                // As long as there are recipes, update the LiveData storing the most recent
-                // recipes. This will trigger observers of that LiveData, such as the
-                // RecipeRepository.
-                if (jsonRecipeResponse != null) {
+                //Parse json response into a list of movies
+                mAllRecipes.postValue(recipes);
+                Log.d(LOG_TAG, "JSON Parsing finished");
 
-                    mDownloadedRecipes.postValue(recipes);
-                }
-            } catch (Exception e) {
-                // Server probably invalid
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-
+        return mAllRecipes;
     }
 }
