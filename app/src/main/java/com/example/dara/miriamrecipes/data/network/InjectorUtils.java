@@ -11,7 +11,7 @@ import com.example.dara.miriamrecipes.ui.list.MainViewModelFactory;
  */
 public class InjectorUtils {
 
-    public static RecipeRepository provideRepository(Context context) {
+    private static RecipeRepository provideRepository(Context context) {
         AppExecutors executors = AppExecutors.getInstance();
         RecipeNetworkDataSource networkDataSource =
                 RecipeNetworkDataSource.getInstance(context.getApplicationContext(), executors);

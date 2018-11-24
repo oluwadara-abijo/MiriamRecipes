@@ -51,7 +51,7 @@ public class Recipe implements Parcelable {
         return mImage;
     }
 
-    protected Recipe(Parcel in) {
+    private Recipe(Parcel in) {
         mId = in.readInt();
         mName = in.readString();
         mIngredients = in.readParcelable(Ingredient.class.getClassLoader());

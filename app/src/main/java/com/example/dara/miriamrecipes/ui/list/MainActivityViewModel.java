@@ -8,17 +8,15 @@ import com.example.dara.miriamrecipes.data.model.Recipe;
 
 import java.util.List;
 
-public class MainActivityViewModel extends ViewModel {
+class MainActivityViewModel extends ViewModel {
 
-    private final RecipeRepository mRepository;
     private final LiveData<List<Recipe>> mRecipes;
 
-    public MainActivityViewModel(RecipeRepository repository) {
-        mRepository = repository;
-        mRecipes = mRepository.getRecipes();
+    MainActivityViewModel(RecipeRepository repository) {
+        mRecipes = repository.getRecipes();
     }
 
-    public LiveData<List<Recipe>> getRecipes () {
+    LiveData<List<Recipe>> getRecipes() {
         return mRecipes;
     }
 }

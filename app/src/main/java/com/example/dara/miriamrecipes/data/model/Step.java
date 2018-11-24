@@ -36,7 +36,7 @@ public class Step implements Parcelable {
         return mThumbnailUrl;
     }
 
-    protected Step(Parcel in) {
+    Step(Parcel in) {
         mId = in.readInt();
         mShortDescription = in.readString();
         mVideoUrl = in.readString();

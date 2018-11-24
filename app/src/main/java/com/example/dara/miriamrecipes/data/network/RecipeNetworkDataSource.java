@@ -18,18 +18,15 @@ public class RecipeNetworkDataSource {
     private static final Object LOCK = new Object();
     private static final String LOG_TAG = RecipeNetworkDataSource.class.getSimpleName();
     private static RecipeNetworkDataSource sInstance;
-    private final Context mContext;
 
     private final AppExecutors mExecutors;
 
-    //LiveData storing the recipes
-    private final MutableLiveData<List<Recipe>> mAllRecipes;
-
     //Constructor
     private RecipeNetworkDataSource(Context context, AppExecutors executors) {
-        mContext = context;
+        Context mContext = context;
         mExecutors = executors;
-        mAllRecipes = new MutableLiveData<>();
+        //LiveData storing the recipes
+        MutableLiveData<List<Recipe>> mAllRecipes = new MutableLiveData<>();
     }
 
     /**

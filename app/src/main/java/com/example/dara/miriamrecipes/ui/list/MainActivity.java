@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Ite
 
     //UI Elements
     @BindView(R.id.rv_recipe_list)
+    private
     RecyclerView mRecyclerView;
     @BindView(R.id.pb_loading_indicator)
+    private
     ProgressBar mLoadingIndicator;
 
 

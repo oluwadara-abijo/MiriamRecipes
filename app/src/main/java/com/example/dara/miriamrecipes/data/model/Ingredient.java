@@ -6,9 +6,9 @@ import android.os.Parcelable;
 public class Ingredient implements Parcelable {
 
     //Fields
-    int mQuantity;
-    String mMeasure;
-    String mIngredient;
+    private int mQuantity;
+    private String mMeasure;
+    private String mIngredient;
 
     //Class constructor
     public Ingredient (int quantity, String measure, String ingredient) {
@@ -19,7 +19,7 @@ public class Ingredient implements Parcelable {
 
     public Ingredient () {}
 
-    protected Ingredient(Parcel in) {
+    Ingredient(Parcel in) {
         mQuantity = in.readInt();
         mMeasure = in.readString();
         mIngredient = in.readString();
