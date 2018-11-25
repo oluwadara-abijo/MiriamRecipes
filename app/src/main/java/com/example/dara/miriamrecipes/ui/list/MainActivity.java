@@ -2,6 +2,7 @@ package com.example.dara.miriamrecipes.ui.list;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +14,8 @@ import android.widget.ProgressBar;
 
 import com.example.dara.miriamrecipes.R;
 import com.example.dara.miriamrecipes.data.model.Recipe;
-import com.example.dara.miriamrecipes.data.network.InjectorUtils;
+import com.example.dara.miriamrecipes.ui.detail.DetailActivity;
+import com.example.dara.miriamrecipes.utilities.InjectorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +28,8 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Ite
 
     //UI Elements
     @BindView(R.id.rv_recipe_list)
-    private
     RecyclerView mRecyclerView;
     @BindView(R.id.pb_loading_indicator)
-    private
     ProgressBar mLoadingIndicator;
 
 
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Ite
         //Get an instance of LinearLayoutManager
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
-        //Associate the LayoutManager with the RecyclerView */
+        //Associate the LayoutManager with the RecyclerView
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mRecyclerView.setHasFixedSize(true);
@@ -97,6 +97,9 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Ite
 
     @Override
     public void onItemClickListener(Recipe recipe) {
+        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        intent.putExtra(DetailActivity.EXTRA_RECIPE_ID, recipe);
+        startActivity(intent);
 
     }
 }

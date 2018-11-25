@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.example.dara.miriamrecipes.AppExecutors;
 import com.example.dara.miriamrecipes.data.model.Recipe;
-import com.example.dara.miriamrecipes.data.network.InjectorUtils;
+import com.example.dara.miriamrecipes.utilities.InjectorUtils;
 import com.example.dara.miriamrecipes.data.network.RecipeNetworkDataSource;
 
 import java.util.List;
