@@ -3,6 +3,7 @@ package com.example.dara.miriamrecipes.ui.list;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import butterknife.ButterKnife;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdapterViewHolder> {
 
-    //List object that holds movie data
+    //List object that holds recipes
     private List<Recipe> mRecipes;
 
     //Create an instance of the click handling interface
@@ -36,7 +37,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         Context context = viewGroup.getContext();
         int layout = R.layout.list_item_recipe;
         View view = LayoutInflater.from(context).inflate(layout, viewGroup, false);
-//        ButterKnife.bind(this, view);
         return new RecipeAdapterViewHolder(view);
     }
 
@@ -76,12 +76,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         RecipeAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
             mItemClickListener.onItemClickListener(mRecipes.get(position));
+            Log.d("MAIN CLICK>>>","Item on position" + position +"clicked");
 
         }
     }
