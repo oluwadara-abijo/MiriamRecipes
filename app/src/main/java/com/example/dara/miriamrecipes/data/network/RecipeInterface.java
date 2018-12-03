@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 
 //Interface where endpoints are defined
 public interface RecipeInterface {
-    @GET("baking.json")
+    @GET("topher/2017/May/59121517_baking/baking.json")
     Call<List<Recipe>> getAllRecipes();
 }

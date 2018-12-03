@@ -3,10 +3,12 @@ package com.example.dara.miriamrecipes.ui.list;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -45,7 +47,13 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Ite
         ButterKnife.bind(this);
 
         //Get an instance of LinearLayoutManager
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        GridLayoutManager mLayoutManager;
+        //Set span count based on orientation
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            mLayoutManager = new GridLayoutManager(this, 1);
+        } else {
+            mLayoutManager = new GridLayoutManager(this, 3);
+        }
 
         //Associate the LayoutManager with the RecyclerView
         mRecyclerView.setLayoutManager(mLayoutManager);
