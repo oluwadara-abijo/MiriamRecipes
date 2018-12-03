@@ -7,7 +7,7 @@ public class Ingredient {
 
     //Fields
     @SerializedName("quantity")
-    private int mQuantity;
+    private float mQuantity;
     @SerializedName("measure")
     private String mMeasure;
     @SerializedName("ingredient")
@@ -21,7 +21,7 @@ public class Ingredient {
     }
 
     //Getter methods
-    public int getQuantity() {
+    public float getQuantity() {
         return mQuantity;
     }
 

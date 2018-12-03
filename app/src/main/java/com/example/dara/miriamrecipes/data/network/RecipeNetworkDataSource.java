@@ -11,6 +11,14 @@ import com.example.dara.miriamrecipes.data.model.Recipe;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RecipeNetworkDataSource {
 
@@ -20,6 +28,7 @@ public class RecipeNetworkDataSource {
     private static RecipeNetworkDataSource sInstance;
 
     private final AppExecutors mExecutors;
+    private static final String base_url = "https://d17h27t6h515a5.cloudfront.net/";
 
     //Constructor
     private RecipeNetworkDataSource(Context context, AppExecutors executors) {
@@ -44,29 +53,26 @@ public class RecipeNetworkDataSource {
     }
 
     //Gets the recipes from network
-
     public LiveData<List<Recipe>> getRecipes() {
-        MutableLiveData<List<Recipe>> mutableLiveData = new MutableLiveData<>();
+        final MutableLiveData<List<Recipe>> mutableLiveData = new MutableLiveData<>();
 
         mExecutors.networkIO().execute(() -> {
-            try {
-                //Get the url to query
-                URL recipeRequestUrl = NetworkUtils.buildQueryUrl();
+            RecipeInterface mRecipeInterface = RecipeClient.getClient();
 
-                // Use the URL to retrieve the JSON
-                String jsonRecipeResponse = NetworkUtils.getResponseFromHttpUrl(recipeRequestUrl);
+            mRecipeInterface.getAllRecipes().enqueue(new Callback<List<Recipe>>() {
+                @Override
+                public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
+                    Log.d(LOG_TAG, String.valueOf(response));
+                    mutableLiveData.postValue(response.body());
+                }
 
-                // Parse the JSON into a list of recipe objects
-                List<Recipe> recipes = RecipeJsonUtils.extractRecipesFromJson(jsonRecipeResponse);
-                Log.d(LOG_TAG, "JSON Parsing finished");
+                @Override
+                public void onFailure(Call<List<Recipe>> call, Throwable t) {
+                    Log.d(LOG_TAG, "An error occurred");
 
-                //Parse json response into a list of movies
-                mutableLiveData.postValue(recipes);
-                Log.d(LOG_TAG, "JSON Parsing finished");
+                }
+            });
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         });
         return mutableLiveData;
     }

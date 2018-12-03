@@ -23,15 +23,6 @@ public class DetailActivity extends AppCompatActivity implements MasterListAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-//        Ingredient ingredient = new Ingredient(5, "A", "B");
-//        List<Ingredient> ingredientList = new ArrayList<>();
-//        ingredientList.add(ingredient);
-//
-//        Step step = new Step(5, "C", "D", "E");
-//        List<Step> stepList = new ArrayList<>();
-//        stepList.add(step);
-//
-//        mRecipe = new Recipe(1, "Bread", ingredientList, stepList, 2, "Image");
         mRecipe = getIntent().getParcelableExtra(EXTRA_RECIPE_ID);
 
     }
