@@ -1,8 +1,11 @@
 package com.example.dara.miriamrecipes.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Step {
+public class Step implements Parcelable {
 
     //Fields
     @SerializedName("id")
@@ -25,6 +28,26 @@ public class Step {
         mThumbnailUrl = thumbnailUrl;
     }
 
+    protected Step(Parcel in) {
+        mId = in.readInt();
+        mShortDescription = in.readString();
+        mDescription = in.readString();
+        mVideoUrl = in.readString();
+        mThumbnailUrl = in.readString();
+    }
+
+    public static final Creator<Step> CREATOR = new Creator<Step>() {
+        @Override
+        public Step createFromParcel(Parcel in) {
+            return new Step(in);
+        }
+
+        @Override
+        public Step[] newArray(int size) {
+            return new Step[size];
+        }
+    };
+
     //Getter methods
     public int getId() {
         return mId;
@@ -46,4 +69,17 @@ public class Step {
         return mThumbnailUrl;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mId);
+        dest.writeString(mShortDescription);
+        dest.writeString(mDescription);
+        dest.writeString(mVideoUrl);
+        dest.writeString(mThumbnailUrl);
+    }
 }

@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Ite
     @Override
     public void onItemClickListener(Recipe recipe) {
         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-//        intent.putExtra(DetailActivity.EXTRA_RECIPE_ID, recipe);
+        intent.putExtra(DetailActivity.EXTRA_RECIPE_ID, recipe);
         startActivity(intent);
 
     }
