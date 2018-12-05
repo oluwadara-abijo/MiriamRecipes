@@ -23,13 +23,17 @@ public class ViewRecipeStepActivity extends AppCompatActivity implements MasterL
 
         mRecipe = getIntent().getParcelableExtra(EXTRA_RECIPE_ID);
 
-        // COMPLETED (5) Create a new BodyPartFragment instance and display it using the FragmentManager
-        RecipeStepVideoFragment videoFragment = new RecipeStepVideoFragment();
+        //Create and display a new  RecipeStepVideoFragment
+        StepVideoFragment videoFragment = new StepVideoFragment();
+
+        //Create and display a new  RecipeStepDescriptionFragment
+        StepDescriptionFragment descriptionFragment = new StepDescriptionFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
                 .add(R.id.video_container, videoFragment)
+                .add(R.id.description_container, descriptionFragment)
                 .commit();
 
     }

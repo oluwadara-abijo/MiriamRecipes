@@ -27,11 +27,11 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RecipeStepVideoFragment extends Fragment {
+public class StepVideoFragment extends Fragment {
 
     private SimpleExoPlayer mExoPlayer;
 
-    //Bind views
+    //UI element
     @BindView(R.id.recipe_player_view)
     PlayerView mPlayerView;
 
@@ -39,7 +39,7 @@ public class RecipeStepVideoFragment extends Fragment {
     private Recipe mRecipe;
 
     //Empty constructor
-    public RecipeStepVideoFragment() {
+    public StepVideoFragment() {
     }
 
     @Nullable

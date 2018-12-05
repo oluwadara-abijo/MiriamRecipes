@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <!-- A container for the recipe details -->
         <FrameLayout android:id="@+id/details_container"
             android:layout_width="match_parent"

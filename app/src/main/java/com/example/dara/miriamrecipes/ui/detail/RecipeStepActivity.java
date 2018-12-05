@@ -19,7 +19,7 @@ public class RecipeStepActivity extends AppCompatActivity {
         if (savedInstanceState == null)
 
         {   // Create a new head BodyPartFragment
-            RecipeStepVideoFragment stepFragment = new RecipeStepVideoFragment();
+            StepVideoFragment stepFragment = new StepVideoFragment();
 
 //            // Set the list of steps for the fragment and set the position to the second image in the list
 //            stepFragment.setSteps(mRecipe.getSteps());
