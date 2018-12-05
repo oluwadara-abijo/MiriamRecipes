@@ -9,14 +9,13 @@ import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.dara.miriamrecipes.R;
 import com.example.dara.miriamrecipes.data.model.Recipe;
-import com.example.dara.miriamrecipes.ui.detail.DetailActivity;
+import com.example.dara.miriamrecipes.ui.detail.ViewRecipeStepActivity;
 import com.example.dara.miriamrecipes.utilities.InjectorUtils;
 
 import java.util.ArrayList;
@@ -27,6 +26,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements RecipeAdapter.ItemClickListener {
+
+    public static final String RECIPE_BUNDLE_ID = "current_recipe";
 
     //UI Elements
     @BindView(R.id.rv_recipe_list)
@@ -105,8 +106,8 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Ite
 
     @Override
     public void onItemClickListener(Recipe recipe) {
-        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-        intent.putExtra(DetailActivity.EXTRA_RECIPE_ID, recipe);
+        Intent intent = new Intent(MainActivity.this, ViewRecipeStepActivity.class);
+        intent.putExtra(ViewRecipeStepActivity.EXTRA_RECIPE_ID, recipe);
         startActivity(intent);
 
     }

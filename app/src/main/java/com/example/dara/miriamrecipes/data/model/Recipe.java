@@ -38,12 +38,12 @@ public class Recipe implements Parcelable {
     protected Recipe(Parcel in) {
         mId = in.readInt();
         mName = in.readString();
-        mServings = in.readInt();
-        mImage = in.readString();
         mIngredients = new ArrayList<>();
         in.readList(mIngredients, Ingredient.class.getClassLoader());
         mSteps = new ArrayList<>();
         in.readList(mSteps, Step.class.getClassLoader());
+        mServings = in.readInt();
+        mImage = in.readString();
 
     }
 

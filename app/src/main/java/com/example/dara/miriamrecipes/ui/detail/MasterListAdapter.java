@@ -89,7 +89,7 @@ public class MasterListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     //ViewHolder class for Ingredients
     public class IngredientViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.recipe_step_text_view)
+        @BindView(R.id.recipe_player_view)
         TextView recipeStep;
 
 
@@ -105,7 +105,7 @@ public class MasterListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     //ViewHolder class for steps
     public class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.recipe_step_text_view)
+        @BindView(R.id.recipe_player_view)
         TextView recipeStep;
 
 

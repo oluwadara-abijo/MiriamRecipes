@@ -17,7 +17,7 @@ public class Ingredient implements Parcelable {
     private String mIngredient;
 
     //Class constructor
-    public Ingredient (int quantity, String measure, String ingredient) {
+    public Ingredient (float quantity, String measure, String ingredient) {
         mQuantity = quantity;
         mMeasure = measure;
         mIngredient = ingredient;
