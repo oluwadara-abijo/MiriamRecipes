@@ -39,11 +39,6 @@ public class MasterListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         mItemClickListener = itemClickListener;
     }
 
-    @Override
-    public int getItemCount() {
-        return mIngredients.size() + mSteps.size();
-    }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -87,25 +82,29 @@ public class MasterListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return -1;
     }
 
-    //ViewHolder class for Ingredients
-    public class IngredientViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.recipe_player_view)
-        TextView recipeStep;
+    @Override
+    public int getItemCount() {
+        return mIngredients.size() + mSteps.size();
+    }
 
+    //ViewHolder class for Ingredients
+    class IngredientViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.recipe_name_textView)
+        TextView recipeStep;
 
         IngredientViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(Ingredient ingredient) {
+        void bind(Ingredient ingredient) {
             recipeStep.setText(ingredient.getIngredient());
         }
     }
 
     //ViewHolder class for steps
     public class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.recipe_player_view)
+        @BindView(R.id.recipe_name_textView)
         TextView recipeStep;
 
 
@@ -114,7 +113,7 @@ public class MasterListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(Step step) {
+        void bind(Step step) {
             recipeStep.setText(step.getShortDescription());
         }
 

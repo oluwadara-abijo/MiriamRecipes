@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- This fragment layout displays just one text view displaying a recipe step -->
+<!-- This fragment layout displays a Player view for the recipe step video -->
 
 <com.google.android.exoplayer2.ui.PlayerView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/recipe_player_view"

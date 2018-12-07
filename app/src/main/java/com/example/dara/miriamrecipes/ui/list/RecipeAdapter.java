@@ -26,7 +26,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
     private final ItemClickListener mItemClickListener;
 
     //Class constructor which creates a RecipeAdapter
-    public RecipeAdapter(List<Recipe> recipes, ItemClickListener itemClickListener) {
+    RecipeAdapter(List<Recipe> recipes, ItemClickListener itemClickListener) {
         mRecipes = recipes;
         mItemClickListener = itemClickListener;
     }
@@ -51,7 +51,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
      * When data changes, this method updates the list of recipes
      * and notifies the adapter to use the new values on it
      */
-    public void setRecipes(List<Recipe> recipes) {
+    void setRecipes(List<Recipe> recipes) {
         mRecipes = recipes;
         notifyDataSetChanged();
     }
@@ -84,7 +84,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
         public void onClick(View v) {
             int position = getAdapterPosition();
             mItemClickListener.onItemClickListener(mRecipes.get(position));
-            Log.d("MAIN CLICK>>>","Item on position" + position +"clicked");
+            Log.d("MAIN CLICK>>>","Item on position " + position +" clicked");
 
         }
     }

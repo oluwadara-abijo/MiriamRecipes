@@ -27,6 +27,8 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.dara.miriamrecipes.ui.list.MainActivity.EXTRA_RECIPE_ID;
+
 public class StepVideoFragment extends Fragment {
 
     private SimpleExoPlayer mExoPlayer;
@@ -35,16 +37,14 @@ public class StepVideoFragment extends Fragment {
     @BindView(R.id.recipe_player_view)
     PlayerView mPlayerView;
 
-    //Current recipe object
-    private Recipe mRecipe;
-
     //Empty constructor
     public StepVideoFragment() {
     }
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
         // Inflate the fragment_recipe_step_video layout
         View rootView = inflater.inflate(R.layout.fragment_recipe_step_video, container, false);
@@ -52,7 +52,8 @@ public class StepVideoFragment extends Fragment {
         //Bind the text view
         ButterKnife.bind(this, rootView);
 
-        mRecipe = ((ViewRecipeStepActivity)this.getActivity()).getRecipe();
+        //Current recipe
+        Recipe mRecipe = getActivity().getIntent().getParcelableExtra(EXTRA_RECIPE_ID);
 
         String videoUrl = mRecipe.getSteps().get(0).getVideoUrl();
         initializePlayer(Uri.parse(videoUrl));

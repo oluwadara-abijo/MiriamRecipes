@@ -1,9 +1,10 @@
 package com.example.dara.miriamrecipes.ui.detail;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,65 +15,56 @@ import com.example.dara.miriamrecipes.data.model.Ingredient;
 import com.example.dara.miriamrecipes.data.model.Recipe;
 import com.example.dara.miriamrecipes.data.model.Step;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.dara.miriamrecipes.ui.list.MainActivity.EXTRA_RECIPE_ID;
+
 // This fragment displays a list of recipe  steps in a recycler view
-public class MasterListFragment extends Fragment implements MasterListAdapter.ItemClickListener{
+public class MasterListFragment extends Fragment implements MasterListAdapter.ItemClickListener {
 
-    @BindView(R.id.steps_recycler_view) RecyclerView recyclerView;
-    private Recipe mRecipe;
-
-    // Define a new interface OnImageClickListener that triggers a callback in the host activity
-    MasterListAdapter.ItemClickListener mCallback;
-
-    @Override
-    public void onItemClickListener(Step step) {
-
-    }
-
-    // Override onAttach to make sure that the container activity has implemented the callback
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        // This makes sure that the host activity has implemented the callback interface
-        // If not, it throws an exception
-        try {
-            mCallback = (MasterListAdapter.ItemClickListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString()
-                    + " must implement OnItemClickListener");
-        }
-    }
+    @BindView(R.id.steps_recycler_view)
+    RecyclerView recyclerView;
 
     // Mandatory empty constructor
     public MasterListFragment() {
     }
 
     // Inflates the RecyclerView of all steps
+    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
-        final View rootView = inflater.inflate(R.layout.fragment_steps_master_list, container, false);
+        //Inflate the layout
+        View rootView = inflater.inflate(R.layout.fragment_steps_master_list, container, false);
 
+        //Bind view
         ButterKnife.bind(this, rootView);
 
-        List<Step> steps = new ArrayList<>();
-        List<Ingredient> ingredients = new ArrayList<>();
+        //Current recipe
+        Recipe mRecipe = getActivity().getIntent().getParcelableExtra(EXTRA_RECIPE_ID);
 
-        // Create the adapter
-        // This adapter takes in the context and an ArrayList of ALL the steps to display
-        MasterListAdapter mAdapter = new MasterListAdapter(ingredients, steps, this);
+        //Create lists of all steps and ingredients
+        List<Ingredient> mIngredients = mRecipe.getIngredients();
+        List<Step> mSteps = mRecipe.getSteps();
 
-        // Set the adapter on the GridView
+        //Layout manager for the recycler view
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
+        recyclerView.setLayoutManager(layoutManager);
+
+        //Create an adapter to set on the recycler view
+        MasterListAdapter mAdapter = new MasterListAdapter(mIngredients, mSteps, this);
+
         recyclerView.setAdapter(mAdapter);
 
-        // Return the root view
         return rootView;
+    }
+
+    @Override
+    public void onItemClickListener(Step step) {
+
     }
 }

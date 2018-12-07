@@ -15,14 +15,13 @@ import com.example.dara.miriamrecipes.data.model.Recipe;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.dara.miriamrecipes.ui.list.MainActivity.EXTRA_RECIPE_ID;
+
 public class StepDescriptionFragment extends Fragment {
 
     //UI element
     @BindView(R.id.tv_recipe_description)
     TextView textView;
-
-    //Current recipe object
-    private Recipe mRecipe;
 
     @Nullable
     @Override
@@ -33,7 +32,8 @@ public class StepDescriptionFragment extends Fragment {
         //Bind the text view
         ButterKnife.bind(this, rootView);
 
-        mRecipe = ((ViewRecipeStepActivity)this.getActivity()).getRecipe();
+        //Current recipe object
+        Recipe mRecipe = getActivity().getIntent().getParcelableExtra(EXTRA_RECIPE_ID);
 
         String recipeDescription = mRecipe.getSteps().get(0).getDescription();
         textView.setText(recipeDescription);

@@ -9,10 +9,10 @@ import com.example.dara.miriamrecipes.R;
 import com.example.dara.miriamrecipes.data.model.Recipe;
 import com.example.dara.miriamrecipes.data.model.Step;
 
+import static com.example.dara.miriamrecipes.ui.list.MainActivity.EXTRA_RECIPE_ID;
+
 
 public class ViewRecipeStepActivity extends AppCompatActivity implements MasterListAdapter.ItemClickListener {
-
-    public static final String EXTRA_RECIPE_ID = "recipe_extra";
 
     private Recipe mRecipe;
 
@@ -26,7 +26,7 @@ public class ViewRecipeStepActivity extends AppCompatActivity implements MasterL
         //Create and display a new  RecipeStepVideoFragment
         StepVideoFragment videoFragment = new StepVideoFragment();
 
-        //Create and display a new  RecipeStepDescriptionFragment
+        //Create and display a new RecipeStepDescriptionFragment
         StepDescriptionFragment descriptionFragment = new StepDescriptionFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -36,10 +36,6 @@ public class ViewRecipeStepActivity extends AppCompatActivity implements MasterL
                 .add(R.id.description_container, descriptionFragment)
                 .commit();
 
-    }
-
-    public Recipe getRecipe() {
-        return mRecipe;
     }
 
     @Override
