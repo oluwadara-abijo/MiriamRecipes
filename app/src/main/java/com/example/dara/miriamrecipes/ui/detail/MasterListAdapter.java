@@ -43,7 +43,7 @@ public class MasterListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
-        int layout = R.layout.list_item_recipe;
+        int layout = R.layout.list_item_recipe_steps;
         View itemView = LayoutInflater.from(context).inflate(layout, viewGroup, false);
 
         if (viewType == VIEW_TYPE_INGREDIENT) {
@@ -89,7 +89,7 @@ public class MasterListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     //ViewHolder class for Ingredients
     class IngredientViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.recipe_name_textView)
+        @BindView(R.id.tv_recipe_detail)
         TextView recipeStep;
 
         IngredientViewHolder(View itemView) {
@@ -104,7 +104,7 @@ public class MasterListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     //ViewHolder class for steps
     public class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.recipe_name_textView)
+        @BindView(R.id.tv_recipe_detail)
         TextView recipeStep;
 
 
