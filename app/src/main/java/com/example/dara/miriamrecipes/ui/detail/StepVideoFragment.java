@@ -51,12 +51,14 @@ public class StepVideoFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         //Current step
-        Step mStep = ((ViewRecipeStepActivity)this.getActivity()).getStep();
-//        Step mStep = getActivity().getIntent().getParcelableExtra(EXTRA_RECIPE_ID);
+        Step mStep = ((ViewRecipeStepActivity) this.getActivity()).getStep();
 
-
+        //Get the video url of the current step
         String videoUrl = mStep.getVideoUrl();
-        initializePlayer(Uri.parse(videoUrl));
+        //Initialize player if current step has a video
+        if (!videoUrl.isEmpty()) {
+            initializePlayer(Uri.parse(videoUrl));
+        }
 
         // Return the rootView
         return rootView;
