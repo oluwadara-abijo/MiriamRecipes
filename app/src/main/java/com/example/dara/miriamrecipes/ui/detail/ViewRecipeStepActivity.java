@@ -36,14 +36,16 @@ public class ViewRecipeStepActivity extends AppCompatActivity {
         //Bind views
         ButterKnife.bind(this);
 
+        mStep = getIntent().getParcelableExtra(EXTRA_STEP_ID);
+
         //Allow video take up full screen on landscape orientation on mobile
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            descriptionContainer.setVisibility(View.GONE);
-            videoContainer.setLayoutParams(new LinearLayout
-                    .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            if (!TextUtils.isEmpty(mStep.getVideoUrl())) {
+                descriptionContainer.setVisibility(View.GONE);
+                videoContainer.setLayoutParams(new LinearLayout
+                        .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            }
         }
-
-        mStep = getIntent().getParcelableExtra(EXTRA_STEP_ID);
 
         this.setTitle(mStep.getShortDescription());
 

@@ -1,5 +1,6 @@
 package com.example.dara.miriamrecipes.ui.detail;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,16 +26,24 @@ import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.dara.miriamrecipes.ui.detail.RecipeStepActivity.EXTRA_STEP_ID;
+
 public class StepVideoFragment extends Fragment {
+
+    public static final String CURRENT_STEP = "current_step";
 
     private SimpleExoPlayer mExoPlayer;
 
     //UI element
     @BindView(R.id.recipe_player_view)
     PlayerView mPlayerView;
+
+    private Step mStep;
 
     //Empty constructor
     public StepVideoFragment() {
@@ -45,6 +54,10 @@ public class StepVideoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
+        if (savedInstanceState != null) {
+            mStep = savedInstanceState.getParcelable(CURRENT_STEP);
+        }
+
         // Inflate the fragment_recipe_step_video layout
         View rootView = inflater.inflate(R.layout.fragment_recipe_step_video, container, false);
 
@@ -52,7 +65,12 @@ public class StepVideoFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         //Current step
-        Step mStep = ((ViewRecipeStepActivity) this.getActivity()).getStep();
+        Intent intent = Objects.requireNonNull(getActivity()).getIntent();
+        if (intent != null) {
+            if (intent.hasExtra(EXTRA_STEP_ID)) {
+                mStep = ((ViewRecipeStepActivity) this.getActivity()).getStep();
+            }
+        }
 
         //Get the video url of the current step
         String videoUrl = mStep.getVideoUrl();
@@ -66,6 +84,7 @@ public class StepVideoFragment extends Fragment {
     }
 
     private void initializePlayer(Uri uri) {
+
         if (mExoPlayer == null) {
 
             RenderersFactory renderersFactory = new DefaultRenderersFactory(getContext());
@@ -91,6 +110,16 @@ public class StepVideoFragment extends Fragment {
         mExoPlayer.stop();
         mExoPlayer.release();
         mExoPlayer = null;
+    }
+
+    public void setStep(Step mStep) {
+        this.mStep = mStep;
+    }
+
+    //Save the state of the fragment
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable(CURRENT_STEP, mStep);
     }
 
     @Override

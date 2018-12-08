@@ -15,13 +15,13 @@ public class InjectorUtils {
     private static RecipeRepository provideRepository(Context context) {
         AppExecutors executors = AppExecutors.getInstance();
         RecipeNetworkDataSource networkDataSource =
-                RecipeNetworkDataSource.getInstance(context.getApplicationContext(), executors);
+                RecipeNetworkDataSource.getInstance(executors);
         return RecipeRepository.getInstance(networkDataSource, executors, context);
     }
 
-    public static RecipeNetworkDataSource provideNetworkDataSource(Context context) {
+    public static RecipeNetworkDataSource provideNetworkDataSource() {
         AppExecutors executors = AppExecutors.getInstance();
-        return RecipeNetworkDataSource.getInstance(context.getApplicationContext(), executors);
+        return RecipeNetworkDataSource.getInstance(executors);
     }
 
     public static MainViewModelFactory provideMainActivityViewModelFactory(Context context) {

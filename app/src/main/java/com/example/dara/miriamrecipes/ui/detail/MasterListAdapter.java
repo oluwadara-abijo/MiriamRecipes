@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 public class MasterListAdapter extends RecyclerView.Adapter<MasterListAdapter.MasterListAdapterViewHolder> {
 
     //List object that holds ingredients
-    private List<Step> mSteps;
+    private final List<Step> mSteps;
 
     //Create an instance of the click handling interface
     private final ItemClickListener mItemClickListener;

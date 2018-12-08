@@ -45,7 +45,7 @@ public class RecipeRepository {
     //Network related operation
     public LiveData<List<Recipe>> getRecipes() {
         RecipeNetworkDataSource networkDataSource = InjectorUtils
-                .provideNetworkDataSource(mContext);
+                .provideNetworkDataSource();
         return networkDataSource.getRecipes();
     }
 }

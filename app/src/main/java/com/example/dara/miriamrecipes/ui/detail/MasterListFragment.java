@@ -1,13 +1,11 @@
 package com.example.dara.miriamrecipes.ui.detail;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +17,15 @@ import com.example.dara.miriamrecipes.data.model.Recipe;
 import com.example.dara.miriamrecipes.data.model.Step;
 
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.dara.miriamrecipes.ui.detail.RecipeStepActivity.EXTRA_STEP_ID;
 import static com.example.dara.miriamrecipes.ui.list.MainActivity.EXTRA_RECIPE_ID;
 
 // This fragment displays a list of recipe  steps in a recycler view
-public class MasterListFragment extends Fragment implements MasterListAdapter.ItemClickListener {
+public class MasterListFragment extends Fragment {
 
     @BindView(R.id.steps_recycler_view)
     RecyclerView stepsRecyclerView;
@@ -51,7 +49,7 @@ public class MasterListFragment extends Fragment implements MasterListAdapter.It
         ButterKnife.bind(this, rootView);
 
         //Current recipe
-        Recipe mRecipe = getActivity().getIntent().getParcelableExtra(EXTRA_RECIPE_ID);
+        Recipe mRecipe = Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra(EXTRA_RECIPE_ID);
 
         //Create lists of all steps and ingredients
         List<Ingredient> mIngredients = mRecipe.getIngredients();
@@ -62,7 +60,7 @@ public class MasterListFragment extends Fragment implements MasterListAdapter.It
         stepsRecyclerView.setLayoutManager(layoutManager);
 
         //Create an adapter to set on the recycler view
-        MasterListAdapter mAdapter = new MasterListAdapter(mSteps, this);
+        MasterListAdapter mAdapter = new MasterListAdapter(mSteps, (MasterListAdapter.ItemClickListener) getContext());
 
         stepsRecyclerView.setAdapter(mAdapter);
 
@@ -73,8 +71,6 @@ public class MasterListFragment extends Fragment implements MasterListAdapter.It
 
             String allIngredients = ingredientDetail + "\n";
 
-            Log.d("ALL>>>", allIngredients);
-
             ingredientsTextView.append(allIngredients);
 
         }
@@ -82,10 +78,4 @@ public class MasterListFragment extends Fragment implements MasterListAdapter.It
         return rootView;
     }
 
-    @Override
-    public void onItemClickListener(Step step) {
-        Intent intent = new Intent(getActivity(), ViewRecipeStepActivity.class);
-        intent.putExtra(EXTRA_STEP_ID, step);
-        startActivity(intent);
-    }
 }

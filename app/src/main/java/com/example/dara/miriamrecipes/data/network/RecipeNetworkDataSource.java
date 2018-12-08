@@ -2,7 +2,6 @@ package com.example.dara.miriamrecipes.data.network;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -25,21 +24,18 @@ public class RecipeNetworkDataSource {
     private final AppExecutors mExecutors;
 
     //Constructor
-    private RecipeNetworkDataSource(Context context, AppExecutors executors) {
-        Context mContext = context;
+    private RecipeNetworkDataSource(AppExecutors executors) {
         mExecutors = executors;
-        //LiveData storing the recipes
-        MutableLiveData<List<Recipe>> mAllRecipes = new MutableLiveData<>();
     }
 
     /**
      * Get the singleton for this class
      */
-    public static RecipeNetworkDataSource getInstance(Context context, AppExecutors executors) {
+    public static RecipeNetworkDataSource getInstance(AppExecutors executors) {
         Log.d(LOG_TAG, "Getting the network data source");
         if (sInstance == null) {
             synchronized (LOCK) {
-                sInstance = new RecipeNetworkDataSource(context.getApplicationContext(), executors);
+                sInstance = new RecipeNetworkDataSource(executors);
                 Log.d(LOG_TAG, "Made new network data source");
             }
         }
@@ -55,13 +51,13 @@ public class RecipeNetworkDataSource {
 
             mRecipeInterface.getAllRecipes().enqueue(new Callback<List<Recipe>>() {
                 @Override
-                public void onResponse(@NonNull Call<List<Recipe>> call, Response<List<Recipe>> response) {
+                public void onResponse(@NonNull Call<List<Recipe>> call, @NonNull Response<List<Recipe>> response) {
                     Log.d(LOG_TAG, String.valueOf(response));
                     mutableLiveData.postValue(response.body());
                 }
 
                 @Override
-                public void onFailure(Call<List<Recipe>> call, Throwable t) {
+                public void onFailure(@NonNull Call<List<Recipe>> call, @NonNull Throwable t) {
                     Log.d(LOG_TAG, "An error occurred");
 
                 }
