@@ -10,12 +10,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.dara.miriamrecipes.R;
-import com.example.dara.miriamrecipes.data.model.Recipe;
+import com.example.dara.miriamrecipes.data.model.Step;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.example.dara.miriamrecipes.ui.list.MainActivity.EXTRA_RECIPE_ID;
 
 public class StepDescriptionFragment extends Fragment {
 
@@ -32,10 +30,10 @@ public class StepDescriptionFragment extends Fragment {
         //Bind the text view
         ButterKnife.bind(this, rootView);
 
-        //Current recipe object
-        Recipe mRecipe = getActivity().getIntent().getParcelableExtra(EXTRA_RECIPE_ID);
+        //Current step
+        Step mStep = ((ViewRecipeStepActivity)this.getActivity()).getStep();
 
-        String recipeDescription = mRecipe.getSteps().get(0).getDescription();
+        String recipeDescription = mStep.getDescription();
         textView.setText(recipeDescription);
 
         // Return the rootView

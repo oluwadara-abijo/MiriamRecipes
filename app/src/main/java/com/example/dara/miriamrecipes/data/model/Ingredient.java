@@ -10,11 +10,11 @@ public class Ingredient implements Parcelable {
 
     //Fields
     @SerializedName("quantity")
-    private float mQuantity;
+    private final float mQuantity;
     @SerializedName("measure")
-    private String mMeasure;
+    private final String mMeasure;
     @SerializedName("ingredient")
-    private String mIngredient;
+    private final String mIngredient;
 
     //Class constructor
     public Ingredient (float quantity, String measure, String ingredient) {
@@ -23,7 +23,7 @@ public class Ingredient implements Parcelable {
         mIngredient = ingredient;
     }
 
-    protected Ingredient(Parcel in) {
+    Ingredient(Parcel in) {
         mQuantity = in.readFloat();
         mMeasure = in.readString();
         mIngredient = in.readString();

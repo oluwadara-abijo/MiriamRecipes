@@ -17,15 +17,13 @@ public class RecipeRepository {
     // For Singleton instantiation
     private static final Object LOCK = new Object();
     private static RecipeRepository sInstance;
-    private final RecipeNetworkDataSource mRecipeNetworkDataSource;
-    private final AppExecutors mExecutors;
-    private Context mContext;
+    private final Context mContext;
 
     //Constructor
     private RecipeRepository(RecipeNetworkDataSource recipeNetworkDataSource,
                              AppExecutors executors, Context context) {
-        mRecipeNetworkDataSource = recipeNetworkDataSource;
-        mExecutors = executors;
+        RecipeNetworkDataSource mRecipeNetworkDataSource = recipeNetworkDataSource;
+        AppExecutors mExecutors = executors;
         mContext = context;
     }
 

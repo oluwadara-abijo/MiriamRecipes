@@ -49,15 +49,6 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         return mIngredients.size();
     }
 
-    /**
-     * When data changes, this method updates the list of recipes
-     * and notifies the adapter to use the new values on it
-     */
-    void setIngredients(List<Ingredient> ingredients) {
-        mIngredients = ingredients;
-        notifyDataSetChanged();
-    }
-
     //ViewHolder class
     class IngredientAdapterViewHolder extends RecyclerView.ViewHolder {
         //UI elements

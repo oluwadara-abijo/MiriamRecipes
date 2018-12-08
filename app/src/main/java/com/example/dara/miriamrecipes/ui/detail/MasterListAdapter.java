@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.dara.miriamrecipes.R;
-import com.example.dara.miriamrecipes.data.model.Ingredient;
 import com.example.dara.miriamrecipes.data.model.Step;
 
 import java.util.List;
@@ -18,115 +17,66 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 // Custom adapter class that displays a list of all steps in a RecyclerView
-public class MasterListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    private final int VIEW_TYPE_INGREDIENT = 0;
-    private final int VIEW_TYPE_STEP = 1;
+public class MasterListAdapter extends RecyclerView.Adapter<MasterListAdapter.MasterListAdapterViewHolder> {
 
     //List object that holds ingredients
-    private List<Ingredient> mIngredients;
-    //List object that holds steps
     private List<Step> mSteps;
 
     //Create an instance of the click handling interface
-    private final MasterListAdapter.ItemClickListener mItemClickListener;
+    private final ItemClickListener mItemClickListener;
 
-    //Class constructor which creates a MasterListAdapter
-    MasterListAdapter(List<Ingredient> ingredients, List<Step> steps,
-                      MasterListAdapter.ItemClickListener itemClickListener) {
-        mIngredients = ingredients;
+    //Class constructor which creates a RecipeAdapter
+    MasterListAdapter(List<Step> steps, ItemClickListener itemClickListener) {
         mSteps = steps;
         mItemClickListener = itemClickListener;
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public MasterListAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Context context = viewGroup.getContext();
         int layout = R.layout.list_item_recipe_steps;
-        View itemView = LayoutInflater.from(context).inflate(layout, viewGroup, false);
-
-        if (viewType == VIEW_TYPE_INGREDIENT) {
-            return new IngredientViewHolder(itemView);
-        }
-
-        if (viewType == VIEW_TYPE_STEP) {
-            return new StepViewHolder(itemView);
-        }
-
-        return null;
+        View view = LayoutInflater.from(context).inflate(layout, viewGroup, false);
+        return new MasterListAdapter.MasterListAdapterViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        if (viewHolder instanceof IngredientViewHolder) {
-            ((IngredientViewHolder) viewHolder).bind(mIngredients.get(position));
-        }
+    public void onBindViewHolder(@NonNull MasterListAdapterViewHolder masterListAdapterViewHolder, int i) {
+        Step currentStep = mSteps.get(i);
+        masterListAdapterViewHolder.stepTextView.setText(currentStep.getShortDescription());
 
-        if (viewHolder instanceof StepViewHolder) {
-            ((StepViewHolder) viewHolder).bind(mSteps.get(position - mIngredients.size()));
-        }
-
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        if (position < mIngredients.size()) {
-            return VIEW_TYPE_INGREDIENT;
-        }
-
-        if (position - mIngredients.size() < mSteps.size()) {
-            return VIEW_TYPE_STEP;
-        }
-
-        return -1;
     }
 
     @Override
     public int getItemCount() {
-        return mIngredients.size() + mSteps.size();
+        return mSteps.size();
     }
 
-    //ViewHolder class for Ingredients
-    class IngredientViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tv_recipe_detail)
-        TextView recipeStep;
-
-        IngredientViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-
-        void bind(Ingredient ingredient) {
-            recipeStep.setText(ingredient.getIngredient());
-        }
+    //Interface for click handling
+    public interface ItemClickListener {
+        void onItemClickListener(Step step);
     }
 
-    //ViewHolder class for steps
-    public class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.tv_recipe_detail)
-        TextView recipeStep;
+    //ViewHolder class
+    class MasterListAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        //UI elements
+        @BindView(R.id.tv_recipe_step)
+        TextView stepTextView;
 
-
-        StepViewHolder(View itemView) {
+        //ViewHolder class constructor
+        MasterListAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-        }
+            itemView.setOnClickListener(this);
 
-        void bind(Step step) {
-            recipeStep.setText(step.getShortDescription());
         }
 
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
             mItemClickListener.onItemClickListener(mSteps.get(position));
-        }
-    }
 
-    //Interface for click handling
-    public interface ItemClickListener {
-        void onItemClickListener(Step step);
+        }
     }
 
 

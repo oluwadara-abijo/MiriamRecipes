@@ -2,7 +2,7 @@
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/steps_fragment"
-    android:name="com.example.dara.miriamrecipes.ui.detail.IngredientFragment"
+    android:name="com.example.dara.miriamrecipes.ui.detail.MasterListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.detail.RecipeStepActivity">

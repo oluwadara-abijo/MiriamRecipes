@@ -12,30 +12,19 @@ public class Recipe implements Parcelable {
 
     //Fields
     @SerializedName("id")
-    private int mId;
+    private final int mId;
     @SerializedName("name")
-    private String mName;
+    private final String mName;
     @SerializedName("ingredients")
-    private List<Ingredient> mIngredients;
+    private final List<Ingredient> mIngredients;
     @SerializedName("steps")
-    private List<Step> mSteps;
+    private final List<Step> mSteps;
     @SerializedName("servings")
-    private int mServings;
+    private final int mServings;
     @SerializedName("image")
-    private String mImage;
+    private final String mImage;
 
-    //Class constructor
-    public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps,
-                  int servings, String image) {
-        mId = id;
-        mName = name;
-        mIngredients = ingredients;
-        mSteps = steps;
-        mServings = servings;
-        mImage = image;
-    }
-
-    protected Recipe(Parcel in) {
+    private Recipe(Parcel in) {
         mId = in.readInt();
         mName = in.readString();
         mIngredients = new ArrayList<>();
@@ -59,11 +48,6 @@ public class Recipe implements Parcelable {
         }
     };
 
-    //Getter methods
-    public int getId() {
-        return mId;
-    }
-
     public String getName() {
         return mName;
     }
@@ -74,14 +58,6 @@ public class Recipe implements Parcelable {
 
     public List<Step> getSteps() {
         return mSteps;
-    }
-
-    public int getServings() {
-        return mServings;
-    }
-
-    public String getImage() {
-        return mImage;
     }
 
 

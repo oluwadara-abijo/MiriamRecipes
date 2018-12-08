@@ -9,15 +9,15 @@ public class Step implements Parcelable {
 
     //Fields
     @SerializedName("id")
-    private int mId;
+    private final int mId;
     @SerializedName("shortDescription")
-    private String mShortDescription;
+    private final String mShortDescription;
     @SerializedName("description")
-    private String mDescription;
+    private final String mDescription;
     @SerializedName("videoURL")
-    private String mVideoUrl;
+    private final String mVideoUrl;
     @SerializedName("thumbnailURL")
-    private String mThumbnailUrl;
+    private final String mThumbnailUrl;
 
     //Getter methods
     public Step (int id, String shortDescription, String description, String videoUrl, String thumbnailUrl) {
@@ -28,7 +28,7 @@ public class Step implements Parcelable {
         mThumbnailUrl = thumbnailUrl;
     }
 
-    protected Step(Parcel in) {
+    Step(Parcel in) {
         mId = in.readInt();
         mShortDescription = in.readString();
         mDescription = in.readString();
@@ -48,11 +48,6 @@ public class Step implements Parcelable {
         }
     };
 
-    //Getter methods
-    public int getId() {
-        return mId;
-    }
-
     public String getShortDescription() {
         return mShortDescription;
     }
@@ -63,10 +58,6 @@ public class Step implements Parcelable {
 
     public String getVideoUrl() {
         return mVideoUrl;
-    }
-
-    public String getThumbnailUrl() {
-        return mThumbnailUrl;
     }
 
     @Override

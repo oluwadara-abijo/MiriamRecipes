@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Miriam Recipes</string>
     <string name="ingredients_label">Ingredients</string>
+    <string name="play_arrow_icon">Play Arrow Icon</string>
 </resources>

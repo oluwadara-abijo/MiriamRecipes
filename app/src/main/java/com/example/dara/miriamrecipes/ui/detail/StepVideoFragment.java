@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dara.miriamrecipes.R;
-import com.example.dara.miriamrecipes.data.model.Recipe;
+import com.example.dara.miriamrecipes.data.model.Step;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -26,8 +26,6 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.example.dara.miriamrecipes.ui.list.MainActivity.EXTRA_RECIPE_ID;
 
 public class StepVideoFragment extends Fragment {
 
@@ -52,10 +50,12 @@ public class StepVideoFragment extends Fragment {
         //Bind the text view
         ButterKnife.bind(this, rootView);
 
-        //Current recipe
-        Recipe mRecipe = getActivity().getIntent().getParcelableExtra(EXTRA_RECIPE_ID);
+        //Current step
+        Step mStep = ((ViewRecipeStepActivity)this.getActivity()).getStep();
+//        Step mStep = getActivity().getIntent().getParcelableExtra(EXTRA_RECIPE_ID);
 
-        String videoUrl = mRecipe.getSteps().get(0).getVideoUrl();
+
+        String videoUrl = mStep.getVideoUrl();
         initializePlayer(Uri.parse(videoUrl));
 
         // Return the rootView

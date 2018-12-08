@@ -10,6 +10,8 @@ import static com.example.dara.miriamrecipes.ui.list.MainActivity.EXTRA_RECIPE_I
 
 public class RecipeStepActivity extends AppCompatActivity {
 
+    public static final String EXTRA_STEP_ID = "step_extra";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
