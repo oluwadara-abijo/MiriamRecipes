@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.dara.miriamrecipes">
+    package="com.example.dara.miriamsrecipes">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".ui.list.MainActivity"
+            android:name="com.example.dara.miriamsrecipes.ui.list.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,12 +25,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.detail.ViewRecipeStepActivity"
-            android:parentActivityName=".ui.detail.RecipeStepActivity" />
+            android:name="com.example.dara.miriamsrecipes.ui.detail.ViewRecipeStepActivity"
+            android:parentActivityName="com.example.dara.miriamsrecipes.ui.detail.RecipeStepActivity" />
         <activity
-            android:name=".ui.detail.RecipeStepActivity"
+            android:name="com.example.dara.miriamsrecipes.ui.detail.RecipeStepActivity"
             android:launchMode="singleTop"
-            android:parentActivityName=".ui.list.MainActivity" />
+            android:parentActivityName="com.example.dara.miriamsrecipes.ui.list.MainActivity" />
     </application>
 
 </manifest>
