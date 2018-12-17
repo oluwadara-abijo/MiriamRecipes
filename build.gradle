@@ -22,6 +22,7 @@ ext.firebase_jobdispatcher_version = "0.8.5"
 ext.junit_version = "4.12"
 ext.support_test_version = "1.0.2"
 ext.butter_knife_version = "9.0.0-rc2"
+ext.espresso_version = "3.0.2"
 
 allprojects {
     repositories {
