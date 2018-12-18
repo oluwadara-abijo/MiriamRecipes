@@ -15,7 +15,7 @@ import android.widget.ProgressBar;
 
 import com.example.dara.miriamsrecipes.R;
 import com.example.dara.miriamsrecipes.data.model.Recipe;
-import com.example.dara.miriamsrecipes.ui.detail.RecipeStepActivity;
+import com.example.dara.miriamsrecipes.ui.detail.RecipeDetailActivity;
 import com.example.dara.miriamsrecipes.utilities.InjectorUtils;
 
 import java.util.ArrayList;
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Ite
     @BindView(R.id.pb_loading_indicator)
     ProgressBar mLoadingIndicator;
 
-
     private RecipeAdapter mAdapter;
     private int mPosition = RecyclerView.NO_POSITION;
 
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Ite
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             mLayoutManager = new GridLayoutManager(this, 1);
         } else {
-            mLayoutManager = new GridLayoutManager(this, 3);
+            mLayoutManager = new GridLayoutManager(this, 2);
         }
 
         //Associate the LayoutManager with the RecyclerView
@@ -106,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Ite
 
     @Override
     public void onItemClickListener(Recipe recipe) {
-        Intent intent = new Intent(MainActivity.this, RecipeStepActivity.class);
+        Intent intent = new Intent(MainActivity.this, RecipeDetailActivity.class);
         intent.putExtra(EXTRA_RECIPE_ID, recipe);
         intent.putExtra("Recipe Name", recipe.getName());
         startActivity(intent);

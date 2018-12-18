@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dara.miriamsrecipes.BakingAppWidget;
@@ -25,7 +24,7 @@ import butterknife.ButterKnife;
 
 import static com.example.dara.miriamsrecipes.ui.list.MainActivity.EXTRA_RECIPE_ID;
 
-public class RecipeStepActivity extends AppCompatActivity implements MasterListAdapter.ItemClickListener {
+public class RecipeDetailActivity extends AppCompatActivity implements MasterListAdapter.ItemClickListener {
 
     @Nullable
     @BindView(R.id.recipe_step_detail_linear_layout)
@@ -45,7 +44,7 @@ public class RecipeStepActivity extends AppCompatActivity implements MasterListA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe_step);
+        setContentView(R.layout.activity_recipe_detail);
 
         ButterKnife.bind(this);
 
@@ -109,7 +108,7 @@ public class RecipeStepActivity extends AppCompatActivity implements MasterListA
                     .commit();
         } else {
             //This is a mobile view. Pass the details of the current step into the next activity
-            Intent intent = new Intent(RecipeStepActivity.this, ViewRecipeStepActivity.class);
+            Intent intent = new Intent(RecipeDetailActivity.this, StepDetailActivity.class);
             intent.putExtra(EXTRA_STEP_ID, step);
             intent.putExtra(EXTRA_RECIPE_ID, mRecipe);
             startActivity(intent);

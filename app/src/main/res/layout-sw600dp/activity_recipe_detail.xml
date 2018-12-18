@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:baselineAligned="false"
     android:orientation="horizontal"
-    tools:context=".ui.detail.RecipeStepActivity">
+    tools:context=".ui.detail.RecipeDetailActivity">
 
     <!-- This layout is a two-pane layout for the master/detail flow -->
 

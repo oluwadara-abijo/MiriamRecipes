@@ -65,7 +65,7 @@ public class MasterListFragment extends Fragment {
         stepsRecyclerView.setAdapter(mAdapter);
 
         for (int i = 0; i < mIngredients.size(); i++) {
-            String ingredientDetail = mIngredients.get(i).getIngredient() + " " +
+            String ingredientDetail = "* " + mIngredients.get(i).getIngredient() + " " +
                     String.valueOf(mIngredients.get(i).getQuantity()) + " " +
                     mIngredients.get(i).getMeasure();
 

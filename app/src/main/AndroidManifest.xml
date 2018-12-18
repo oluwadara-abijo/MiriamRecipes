@@ -25,10 +25,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.detail.ViewRecipeStepActivity"
-            android:parentActivityName=".ui.detail.RecipeStepActivity" />
+            android:name=".ui.detail.StepDetailActivity"
+            android:parentActivityName=".ui.detail.RecipeDetailActivity" />
         <activity
-            android:name=".ui.detail.RecipeStepActivity"
+            android:name=".ui.detail.RecipeDetailActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".ui.list.MainActivity" />
 

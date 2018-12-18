@@ -31,7 +31,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.dara.miriamsrecipes.ui.detail.RecipeStepActivity.EXTRA_STEP_ID;
+import static com.example.dara.miriamsrecipes.ui.detail.RecipeDetailActivity.EXTRA_STEP_ID;
 
 public class StepVideoFragment extends Fragment {
 
@@ -68,7 +68,7 @@ public class StepVideoFragment extends Fragment {
         Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         if (intent != null) {
             if (intent.hasExtra(EXTRA_STEP_ID)) {
-                mStep = ((ViewRecipeStepActivity) this.getActivity()).getStep();
+                mStep = ((StepDetailActivity) this.getActivity()).getStep();
             }
         }
 

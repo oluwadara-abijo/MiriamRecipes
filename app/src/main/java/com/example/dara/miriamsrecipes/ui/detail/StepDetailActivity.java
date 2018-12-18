@@ -16,9 +16,9 @@ import com.example.dara.miriamsrecipes.data.model.Step;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.dara.miriamsrecipes.ui.detail.RecipeStepActivity.EXTRA_STEP_ID;
+import static com.example.dara.miriamsrecipes.ui.detail.RecipeDetailActivity.EXTRA_STEP_ID;
 
-public class ViewRecipeStepActivity extends AppCompatActivity {
+public class StepDetailActivity extends AppCompatActivity {
 
     //Current step
     private Step mStep;
@@ -31,7 +31,7 @@ public class ViewRecipeStepActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_recipe_step);
+        setContentView(R.layout.activity_step_detail);
 
         //Bind views
         ButterKnife.bind(this);

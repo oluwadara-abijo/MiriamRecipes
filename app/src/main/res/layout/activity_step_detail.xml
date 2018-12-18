@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".ui.detail.ViewRecipeStepActivity">
+    tools:context=".ui.detail.StepDetailActivity">
 
     <!-- LinearLayout for holding three Android-Me images -->
     <LinearLayout
